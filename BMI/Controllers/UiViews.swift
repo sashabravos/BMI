@@ -14,16 +14,16 @@ final class MyView {
         self.customColor = UIColor(red: 0.384, green: 0.376, blue: 0.616, alpha: 1.0)
     }
     
-    public func makeBackgroundImageView(imageName: String) -> UIImageView {
+    public func makeBackgroundImageView(_ imageName: String) -> UIImageView {
         let backgroundImage = UIImageView.init(image: UIImage(named: imageName) ?? UIImage())
         backgroundImage.contentMode = .scaleAspectFill
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         return backgroundImage
     }
     
-    public func makeStackView(axis: NSLayoutConstraint.Axis,
-                              distribution: UIStackView.Distribution,
-                              spacing: CGFloat) -> UIStackView {
+    public func makeStackView(_ axis: NSLayoutConstraint.Axis,
+                              _ distribution: UIStackView.Distribution,
+                              _ spacing: CGFloat) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = axis
         stackView.distribution = distribution
@@ -32,20 +32,24 @@ final class MyView {
         return stackView
     }
     
-    public func makeLabel(title: String, fontSize: CGFloat, fontWeight: UIFont.Weight) -> UILabel {
+    public func makeLabel(_ title: String,
+                          _ textAlignment: NSTextAlignment,
+                          _ fontSize: CGFloat,
+                          _ fontWeight: UIFont.Weight) -> UILabel {
         let label = UILabel()
         label.text = title
         label.numberOfLines = 0
         label.textColor = .darkGray
         label.font = .systemFont(ofSize: fontSize, weight: fontWeight)
-        label.textAlignment = .natural
+        label.textAlignment = textAlignment
         label.isEnabled = true
         return label
     }
 
-    public func makeSlider(sliderValue: Float, minValue: Float, maxValue: Float) -> UISlider {
+    public func makeSlider(value: Float,
+                           minValue: Float, maxValue: Float) -> UISlider {
         let slider = UISlider()
-        slider.value = sliderValue
+        slider.value = value
         slider.minimumValue = minValue
         slider.maximumValue = maxValue
         slider.minimumTrackTintColor = customColor.withAlphaComponent(0.3)
@@ -55,7 +59,7 @@ final class MyView {
         return slider
     }
 
-    public func makeCalculateButton(title: String) -> UIButton {
+    public func makeCalculateButton(_ title: String) -> UIButton {
             let button = UIButton()
             button.backgroundColor = customColor
             button.titleLabel!.numberOfLines = 0

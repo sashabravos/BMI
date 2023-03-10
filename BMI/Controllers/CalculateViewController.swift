@@ -11,11 +11,11 @@ final class CalculateViewController: UIViewController {
     
     private var myView = MyView()
     private var calculator = Calculator()
-    private let backgroundImage = MyView().makeBackgroundImageView(imageName: "calculateBackground")
+    private let backgroundImage = MyView().makeBackgroundImageView("calculateBackground")
     
     private lazy var mainStackView: UIStackView = {
-        let stackView = myView.makeStackView(axis: .vertical, distribution: .fillProportionally,
-                                      spacing: MyView.Constants.mainStackViewSpacing)
+        let stackView = myView.makeStackView( .vertical, .fillProportionally,
+                                              MyView.Constants.mainStackViewSpacing)
         
         [mainLabel, heightStackView, heightSlider,
          weightStackView, weightSlider, calculateButton].forEach {
@@ -25,8 +25,8 @@ final class CalculateViewController: UIViewController {
         return stackView
     }()
     private lazy var heightStackView: UIStackView = {
-        let stackView = myView.makeStackView(axis: .horizontal, distribution: .equalSpacing,
-                                      spacing: MyView.Constants.smallStackViewSpacing)
+        let stackView = myView.makeStackView( .horizontal, .equalSpacing,
+                                              MyView.Constants.smallStackViewSpacing)
         
         [heightLabel, heightNumLabel].forEach {
             stackView.addArrangedSubview($0)
@@ -35,8 +35,8 @@ final class CalculateViewController: UIViewController {
         return stackView
     }()
     private lazy var weightStackView: UIStackView = {
-        let stackView = myView.makeStackView(axis: .horizontal, distribution: .equalSpacing,
-                                      spacing: MyView.Constants.smallStackViewSpacing)
+        let stackView = myView.makeStackView( .horizontal, .equalSpacing,
+                                              MyView.Constants.smallStackViewSpacing)
         
         [weightLabel, weightNumLabel].forEach {
             stackView.addArrangedSubview($0)
@@ -45,37 +45,37 @@ final class CalculateViewController: UIViewController {
         return stackView
     }()
     
-    private let mainLabel = MyView().makeLabel(title: "CALCULATE YOUR BMI",
-                                      fontSize: MyView.Constants.mainLabelFontSize,
-                                      fontWeight: .bold)
-    private let heightLabel = MyView().makeLabel(title: "Height",
-                                        fontSize: MyView.Constants.labelFontSize,
-                                        fontWeight: .light)
-    private var heightNumLabel = MyView().makeLabel(title: "1.5",
-                                           fontSize: MyView.Constants.labelFontSize,
-                                           fontWeight: .light)
-    private let weightLabel = MyView().makeLabel(title: "Weight",
-                                        fontSize: MyView.Constants.labelFontSize,
-                                        fontWeight: .light)
-    private var weightNumLabel = MyView().makeLabel(title: "100",
-                                           fontSize: MyView.Constants.labelFontSize,
-                                           fontWeight: .light)
+    private let mainLabel = MyView().makeLabel( "CALCULATE YOUR BMI",
+                                                .natural, MyView.Constants.mainLabelFontSize,
+                                                .bold)
+    private let heightLabel = MyView().makeLabel( "Height", .natural,
+                                                  MyView.Constants.labelFontSize,
+                                                  .light)
+    private var heightNumLabel = MyView().makeLabel( "1.5", .natural,
+                                                     MyView.Constants.labelFontSize,
+                                                     .light)
+    private let weightLabel = MyView().makeLabel( "Weight", .natural,
+                                                  MyView.Constants.labelFontSize,
+                                                  .light)
+    private var weightNumLabel = MyView().makeLabel( "100", .natural,
+                                                     MyView.Constants.labelFontSize,
+                                                     .light)
 
     private lazy var heightSlider: UISlider = {
-        let slider = myView.makeSlider(sliderValue: 1.5,
+        let slider = myView.makeSlider(value: 1.5,
                                 minValue: 0.0, maxValue: 3.0)
         slider.addTarget(self, action: #selector(heightSliderMoved(slider:)), for: .valueChanged)
         return slider
     }()
     private lazy var weightSlider: UISlider = {
-        let slider = myView.makeSlider(sliderValue: 100.0,
+        let slider = myView.makeSlider(value: 100.0,
                                 minValue: 0.0, maxValue: 200.0)
         slider.addTarget(self, action: #selector(weightSliderMoved(slider:)), for: .valueChanged)
         return slider
     }()
 
     private lazy var calculateButton: UIButton = {
-        let button = myView.makeCalculateButton(title: "CALCULATE")
+        let button = myView.makeCalculateButton("CALCULATE")
         button.addTarget(self, action: #selector(calculatePressed(button:)), for: .touchUpInside)
         return button
     }()

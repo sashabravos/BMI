@@ -11,12 +11,11 @@ final class ResultViewController: UIViewController {
     
     private var myView = MyView()
     private var calculator = Calculator()
-    private let backgroundImage = MyView().makeBackgroundImageView(imageName: "resultBackground")
+    private let backgroundImage = MyView().makeBackgroundImageView("resultBackground")
     
     private lazy var stackView: UIStackView = {
-        let stackView = myView.makeStackView(axis: .vertical,
-                                             distribution: .fill,
-                                             spacing: MyView.Constants.stackViewSpacing)
+        let stackView = myView.makeStackView( .vertical, .fill,
+                                              MyView.Constants.stackViewSpacing)
         
         [resultLabel, bmiLabel, adviceLabel].forEach {
             stackView.addArrangedSubview($0)
@@ -25,18 +24,18 @@ final class ResultViewController: UIViewController {
         return stackView
     }()
     
-    private let resultLabel = MyView().makeLabel(title: "YOUR RESULT",
-                                                 fontSize: MyView.Constants.resultLabelFontSize,
-                                                 fontWeight: .bold)
-    let bmiLabel: UILabel = MyView().makeLabel(title: Calculator().getBMIValue(),
-                                               fontSize: MyView.Constants.bmiLabelFontSize,
-                                               fontWeight: .bold)
-    lazy var adviceLabel: UILabel = MyView().makeLabel(title: "EAT SOME MORE SNACKS!",
-                                                       fontSize: MyView.Constants.recommendLabelFontSize,
-                                                       fontWeight: .light)
+    private let resultLabel = MyView().makeLabel( "YOUR RESULT", .center,
+                                                  MyView.Constants.resultLabelFontSize,
+                                                  .bold)
+    let bmiLabel: UILabel = MyView().makeLabel( Calculator().getBMIValue(),
+                                                .center, MyView.Constants.bmiLabelFontSize,
+                                                .bold)
+    lazy var adviceLabel: UILabel = MyView().makeLabel( "EAT SOME MORE SNACKS!",
+                                                        .natural, MyView.Constants.recommendLabelFontSize,
+                                                        .light)
     
     private lazy var repeatButton: UIButton = {
-        let button = MyView().makeCalculateButton(title: "RECALCULATE")
+        let button = MyView().makeCalculateButton("RECALCULATE")
         button.addTarget(self, action: #selector(repeatButtonButtonPressed(button:)), for: .touchUpInside)
         return button
     }()
