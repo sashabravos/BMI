@@ -1,2 +1,2 @@
 # BMI
-BMI calculator with Delegate
+Calculator for BMI
